@@ -1,0 +1,26 @@
+<!-- templates/index.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Database Viewer</title>
+</head>
+<body>
+    <div style="text-align: right; padding: 10px;">
+        {% if logged==True %}
+            Welcome, {{ username }}! 
+            (<a href="{{ url_for('logout') }}">Logout</a>)
+        {% else %}
+            <a href="{{ url_for('login') }}">Login</a>
+        {% endif %}
+    </div>
+    
+    <h1>All Categories</h1>
+    <ul>
+        {% for category in categories %}
+            <li><a href="{{ url_for('category', category_id=category.id) }}">{{ category.name }}</a></li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

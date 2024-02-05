@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home-all categories</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="header-container">
+        <a href="{{ url_for('category') }}" class="ratehub-link">RATEHUB</a>
+
+        <input type="text" class="search-bar" placeholder="Search Titles">
+
+        <div class="welcome">
+            {% if logged == True %}
+                Welcome, {{ username }}! 
+                (<a href="{{ url_for('logout') }}">Logout</a>)
+            {% else %}
+                <a href="{{ url_for('login') }}">Login</a>
+            {% endif %}
+        </div>
+    </div>
+    
+    <h1>All Categories</h1>
+    <ul>
+        {% for category in categories %}
+            <li><a href="{{ url_for('title', category_id=category.id) }}">{{ category.name }}</a></li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

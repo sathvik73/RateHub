@@ -1,0 +1,46 @@
+
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.ratehub-link {
+    text-decoration: none;
+    color: #333;
+    font-size: 24px;
+}
+
+.header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center; /* Center items vertically */
+    width: 60%;
+    margin-bottom: 20px;
+}
+
+.search-bar {
+    width: 40%;
+    padding: 10px;
+    font-size: 16px;
+}
+
+.welcome {
+    text-align: right;
+    padding: 10px;
+}
+
+.title-box {
+    display: flex;
+    justify-content: space-between;
+    border: 1px solid #ddd;
+    padding: 10px;
+    margin-bottom: 10px;
+    text-decoration: none; /* Remove underline for anchor */
+    color: inherit; /* Inherit text color from parent */
+    width: 60%;
+}
+
+.title-box:hover {
+    background-color: #f0f0f0; /* Add hover effect */
+}

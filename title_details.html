@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ title.title_name }} Details</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="header-container">
+        <a href="{{ url_for('category') }}" class="ratehub-link">RATEHUB</a>
+
+        <input type="text" class="search-bar" placeholder="Search Titles">
+
+        <div class="welcome">
+            {% if logged == True %}
+                Welcome, {{ username }}! 
+                (<a href="{{ url_for('logout') }}">Logout</a>)
+            {% else %}
+                <a href="{{ url_for('login') }}">Login</a>
+            {% endif %}
+        </div>
+    </div>
+
+    <h1>{{ title.title_name }}</h1>
+
+    {% if user_has_rated %}
+        <p>Your Rating: {{ user_rating }}</p>
+        <p>Average Rating: {{ title.rating }} ({{ title.num_ratings }} ratings)</p>
+        <form method="post" action="{{ url_for('remove_rating', title_id=title.id) }}">
+            <input type="submit" value="Remove Rating and Review">
+        </form>
+    {% else %}
+        <form method="post" action="{{ url_for('rate_title', title_id=title.id) }}">
+            <label for="rating">Rate (1-10):</label>
+            <input type="number" name="rating" min="1" max="10" required>
+            <br>
+            <label for="comment">Review:</label>
+            <textarea name="comment" required></textarea>
+            <br>
+            <input type="submit" value="Submit">
+        </form>
+    {% endif %}
+
+    <h2>Reviews</h2>
+    <ul>
+        {% for review in reviews %}
+            <li>{{ review.comment }} - Rating: {{ review.rating }}</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
