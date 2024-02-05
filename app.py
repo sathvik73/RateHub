@@ -131,10 +131,7 @@ def rate_title(title_id):
         newreview = Reviews(title_id=title.id, user_id=user_id,comment = comment, rating=rating)
         db.session.add(newreview)
         db.session.commit()
-        print("Review added successfully.")
-    else:
-        print("Title not found.")
-
+        
     return redirect(url_for('details', title_id = title_id))
 
 @app.route('/remove_rating/<int:title_id>', methods=['POST'])
